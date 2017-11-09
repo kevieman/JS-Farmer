@@ -74,8 +74,10 @@ const plotsLen = plots.length;
 
 const bush = new Plant('bush', 5, 10, 50);
 const corn = new Plant('corn', 1, 5, 7);
+const potato = new Plant('potato', 2, 7, 9);
 plants.push(bush);
 plants.push(corn);
+plants.push((potato));
 const pLen = plants.length;
 
 showFarm();
@@ -156,7 +158,6 @@ function showHelp() {
 
 function buy(product, amount) {
     console.clear();
-    showShop();
     if(onFarm){
         console.log('You need to be in the shop to be able to buy!');
         return;
@@ -370,6 +371,7 @@ function sell(product, amount) {
             plants[i].prpductOwned -= amount;
             const profit = amount * plants[i].sellingPrice;
             bal += profit;
+            showFarm();
             console.log('You sold ' + amount + ' ' + plants[i].name + ' for: $' + profit);
             checker = true;
         }
@@ -377,7 +379,6 @@ function sell(product, amount) {
     if(!checker){
         console.log('This plant does not exist.');
     }
-    showFarm();
 }
 
 function sleep() {
